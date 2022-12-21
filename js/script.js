@@ -1,25 +1,57 @@
-/* Created by: Justin Lavoie *
- Created on: nov 2022 * 
-*/
-
 if (navigator.serviceWorker) {
-  navigator.serviceWorker.register("/ICS2O-PWA-Test/sw.js", {
-    scope: "/ICS2O-PWA-Test/",
+  navigator.serviceWorker.register("/Unit-5-02-JS/sw.js", {
+    scope: "/Unit-5-02-JS/",
   })
 }
 
-;("use strict")
+"use strict"
 
-function calculate() {
-  const length = parseInt(document.getElementById("pay").value)
-  const width = parseInt(document.getElementById("pay2").value)
+const ROCK = 1
+const PAPER = 2
+const SCISSORS = 3
 
-  const area = length * width * 0.18
-  const perimeter = length * width * (1.0 - 0.18)
-  const TAX_RATE = 0.18
-
-  document.getElementById("area").innerHTML =
-    "The governemnt will take: " + area + "$"
-  document.getElementById("perimeter").innerHTML =
-    "your pay will be: " + perimeter + "$"
+function updateSliderValue(valueFromSlider) {
+  document.getElementById("slider-value").innerHTML = valueFromSlider
 }
+
+
+
+function myButtonClicked() {
+  var random = Math.floor(Math.random() * 3) + 1
+  var paperSelected = document.getElementById("paper").checked
+  var rockSelected = document.getElementById("rock").checked
+  var scissorSelected = document.getElementById("scissor").checked
+  var message = "";
+
+  if (random == ROCK) {
+    if (paperSelected) {
+      message = "The computer choose rock! You win!";
+    } else if (rockSelected) {
+      message = "The computer choose rock! It's a tie";
+    } else {
+      message = "The computer choose rock! You lose!";
+    }
+  } else if (random == PAPER) {
+        if (scissorSelected) {
+      message = "The computer choose paper! You win!";
+    } else if (paperSelected) {
+      message = "The computer choose paper! It's a tie";
+    } else {
+      message = "The computer choose paper! You lose!";
+        }
+  } else if (random == SCISSORS) {
+    if (rockSelected) {
+      message = "The computer choose Scissor! You win!";
+    } else if (scissorSelected) {
+      message = "The computer choose Scissor! It's a tie";
+    } else  {
+      message = "The computer choose Scissor! You lose!";
+        }
+  }
+
+
+  document.getElementById("hello-world").innerHTML = message;
+}
+
+
+
